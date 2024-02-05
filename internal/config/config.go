@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 )
 
@@ -18,7 +19,22 @@ type Config struct {
 	Password  string `yaml:"password"`
 }
 
-func (c *Config) InitConfig(scheme string, host string, port int64, password string) error {
+func (c *Config) InitConfig() error {
+	viper.SetConfigName("config") // name of config file (without extension)
+	viper.AddConfigPath("$HOME/.bw-helper")
+	viper.ReadInConfig() // Find and read the config file
+
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return err
+	}
+
+	Configuration = Config{HomeDir: home, Scheme: "http", Host: "localhost", Port: 8087, ConfigDir: ".bw-helper"}
+
+	return nil
+}
+
+func (c *Config) SetConfig(scheme string, host string, port int64, password string) error {
 	if scheme != "" {
 		c.Scheme = scheme
 	}
