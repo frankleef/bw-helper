@@ -36,6 +36,7 @@ func main() {
 	config.Configuration = config.Config{HomeDir: home, Scheme: "http", Host: "localhost", Port: 8087, ConfigDir: ".bw-helper"}
 
 	cmd := &cli.Command{
+		EnableShellCompletion: true,
 		Commands: []*cli.Command{
 			&cli.Command{
 				Name:        "init",
