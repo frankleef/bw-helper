@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/frankleef/bw-login/internal/config"
+	"github.com/frankleef/bw-helpers/internal/config"
 )
 
 func Unlock() (*string, error) {
