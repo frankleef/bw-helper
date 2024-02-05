@@ -89,7 +89,7 @@ func main() {
 						errorLogger.Fatal(err)
 					}
 
-					if err := session.GetSessionToken(); err != nil {
+					if err := session.InitializeSession(); err != nil {
 						errorLogger.Fatal(err)
 					}
 
@@ -106,6 +106,12 @@ func main() {
 			},
 		},
 		Action: func(ctx context.Context, c *cli.Command) error {
+
+			if err := validator.ValidateInit(); err != nil {
+				errorLogger.Fatal(err)
+			}
+
+			session.SetSession()
 			args := c.Args().Slice()
 
 			bwCmd := exec.Command("bw", args[:]...)
