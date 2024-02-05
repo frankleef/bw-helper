@@ -1,4 +1,4 @@
-module github.com/frankleef/bw-helpers
+module github.com/frankleef/bw-login
 
 go 1.21.6
 

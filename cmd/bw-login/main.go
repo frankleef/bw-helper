@@ -10,9 +10,9 @@ import (
 
 	"github.com/atotto/clipboard"
 
-	"github.com/frankleef/bw-helpers/internal/config"
-	"github.com/frankleef/bw-helpers/internal/session"
-	"github.com/frankleef/bw-helpers/internal/validator"
+	"github.com/frankleef/bw-login/internal/config"
+	"github.com/frankleef/bw-login/internal/session"
+	"github.com/frankleef/bw-login/internal/validator"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli/v3"
 )

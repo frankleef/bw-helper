@@ -14,7 +14,7 @@ BW Helper will automatically run `bw serve` on the background when trying to unl
 
 ## Requirements
 
-This CLI makes use of the [clipboard](github.com/atotto/clipboard) package. Therefore, on Linux it requires either the `xclip` or `xsel` package to be installed.
+This CLI makes use of the [clipboard](https://github.com/atotto/clipboard) package. Therefore, on Linux it requires either the `xclip` or `xsel` package to be installed.
 
 For all operating systems it is required to have the [Bitwarden CLI](https://bitwarden.com/help/cli/) installed and configured (e.g. the correct server is setup etc.)
 
