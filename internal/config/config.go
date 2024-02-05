@@ -1,6 +1,7 @@
 package config
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
@@ -89,6 +90,14 @@ func (c *Config) UpdatePassword(password string) error {
 
 	if err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (c *Config) ValidateConfig() error {
+	if !c.ConfigExists() {
+		return errors.New("directory $HOME/.bw-helper does not exist. Run bw-helper init first")
 	}
 
 	return nil

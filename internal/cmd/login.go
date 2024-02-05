@@ -3,8 +3,8 @@ package cmd
 import (
 	"context"
 
+	"github.com/frankleef/bw-helper/internal/config"
 	"github.com/frankleef/bw-helper/internal/session"
-	"github.com/frankleef/bw-helper/internal/validator"
 	"github.com/urfave/cli/v3"
 )
 
@@ -20,7 +20,7 @@ var (
 )
 
 func executeLogin(c *cli.Command) error {
-	if err := validator.ValidateInit(); err != nil {
+	if err := config.Configuration.ValidateConfig(); err != nil {
 		errorLogger.Fatal(err)
 	}
 
