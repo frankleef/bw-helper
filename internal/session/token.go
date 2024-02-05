@@ -18,8 +18,9 @@ func InitializeSession() error {
 		return errors.New("bitwarden CLI is not installed or available in $PATH")
 	}
 
-	bwCmd := exec.Command("bw", "serve")
+	bwCmd := exec.Command("bw", "serve", "--hostname", config.Configuration.Host, "--port", fmt.Sprint(config.Configuration.Port))
 	bwCmd.Stdout = os.Stdout
+	bwCmd.Stderr = os.Stderr
 	if err := bwCmd.Start(); err != nil {
 		return errors.New("could not start Bitwarden Vault Management API")
 	}

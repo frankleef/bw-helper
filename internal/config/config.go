@@ -12,12 +12,17 @@ var Configuration = Config{}
 type Config struct {
 	HomeDir   string `yaml:"-"`
 	ConfigDir string `yaml:"-"`
+	Scheme    string `yaml:"scheme"`
 	Host      string `yaml:"host"`
 	Port      int64  `yaml:"port"`
 	Password  string `yaml:"password"`
 }
 
-func (c *Config) InitConfig(host string, port int64, password string) error {
+func (c *Config) InitConfig(scheme string, host string, port int64, password string) error {
+	if scheme != "" {
+		c.Scheme = scheme
+	}
+
 	if host != "" {
 		c.Host = host
 	}

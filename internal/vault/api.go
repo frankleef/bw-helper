@@ -17,7 +17,7 @@ func Unlock() (*string, error) {
 	})
 
 	responseBody := bytes.NewBuffer(postBody)
-	resp, err := http.Post(fmt.Sprintf("%s:%d/unlock", config.Configuration.Host, config.Configuration.Port), "application/json", responseBody)
+	resp, err := http.Post(fmt.Sprintf("%s://%s:%d/unlock", config.Configuration.Scheme, config.Configuration.Host, config.Configuration.Port), "application/json", responseBody)
 
 	if err != nil {
 		return nil, err

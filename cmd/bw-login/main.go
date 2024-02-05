@@ -33,7 +33,7 @@ func main() {
 		errorLogger.Fatal(err)
 	}
 
-	config.Configuration = config.Config{HomeDir: home, Host: "http://localhost", Port: 8087, ConfigDir: ".bw-helper"}
+	config.Configuration = config.Config{HomeDir: home, Scheme: "http", Host: "localhost", Port: 8087, ConfigDir: ".bw-helper"}
 
 	cmd := &cli.Command{
 		Commands: []*cli.Command{
@@ -47,8 +47,12 @@ func main() {
 						Required: true,
 					},
 					&cli.StringFlag{
+						Name:  "scheme",
+						Usage: "Scheme of Vault Management API. Default http",
+					},
+					&cli.StringFlag{
 						Name:  "host",
-						Usage: "Host of Vault Management API. Default http://localhost",
+						Usage: "Host of Vault Management API. Default localhost",
 					},
 					&cli.StringFlag{
 						Name:  "port",
@@ -61,7 +65,7 @@ func main() {
 						return err
 					}
 
-					if err := config.Configuration.InitConfig(c.String("host"), c.Int("port"), c.String("password")); err != nil {
+					if err := config.Configuration.InitConfig(c.String("scheme"), c.String("host"), c.Int("port"), c.String("password")); err != nil {
 						errorLogger.Fatal(err)
 					}
 
