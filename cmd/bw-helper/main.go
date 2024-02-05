@@ -69,7 +69,7 @@ func main() {
 						errorLogger.Fatal(err)
 					}
 
-					infoLogger.Println("config dir created. Run `bw-login login`.")
+					infoLogger.Println("config dir created. Run `bw-helper login`.")
 					return nil
 				},
 			},

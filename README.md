@@ -22,7 +22,7 @@ For all operating systems it is required to have the [Bitwarden CLI](https://bit
 
 To install, run:
 
-`go install github.com/frankleef/bw-helper/cmd/bw-login`
+`go install github.com/frankleef/bw-helper/cmd/bw-helper@latest`
 
 ## Usage
 
@@ -30,7 +30,7 @@ To install, run:
 
 This command creates the necessary configuration folders and files, allowing you to unlock your vault and retrieve logins.
 
-`bw-login init --password <my-password>`
+`bw-helper init --password <my-password>`
 
 **Note**
 * The password field is required
@@ -38,10 +38,10 @@ This command creates the necessary configuration folders and files, allowing you
 
 ```
 NAME:
-   bw-login init
+   bw-helper init
 
 USAGE:
-   bw-login init [command [command options]] 
+   bw-helper init [command [command options]] 
 
 DESCRIPTION:
    Initialize the helper.
@@ -55,17 +55,17 @@ OPTIONS:
 
 ### Logging in
 
-To unlock your vault, run `bw-login login`. This will perform the following actions:
+To unlock your vault, run `bw-helper login`. This will perform the following actions:
 
 * Call the Vault Management API with your provided password to retrieve a session token
 * Stores this token in `$HOME/.bw-helper/.token`
 
 ```
 NAME:
-   bw-login login
+   bw-helper login
 
 USAGE:
-   bw-login login [command [command options]] 
+   bw-helper login [command [command options]] 
 
 DESCRIPTION:
    Login to your Bitwarden Vault
@@ -77,16 +77,16 @@ OPTIONS:
 
 ### Getting items from your Vault
 
-Since it is not possible to store environment variables in a parent process, nor does Bitwarden CLI support reading the token from file, we need to use `bw-login` as a wrapper for using the Bitwarden CLI. The exact same command structure supported by the Bitwarden CLI is supported by `bw-login`.
+Since it is not possible to store environment variables in a parent process, nor does Bitwarden CLI support reading the token from file, we need to use `bw-helper` as a wrapper for using the Bitwarden CLI. The exact same command structure supported by the Bitwarden CLI is supported by `bw-helper`.
 
 ***Example: retrieving your LinkedIn password***
 
-`bw-login get password linkedin`
+`bw-helper get password linkedin`
 
 ***Example: getting your LinkedIn username***
 
-`bw-login get username linkedin`
+`bw-helper get username linkedin`
 
 **Note**
 
-**Any** command supported by the Bitwarden CLI is suppoerted by `bw-login`, as the command arguments are passed directly to Bitwarden CLI if it's an unknown command for `bw-login`. As an example, calling `bw-login gibberish` will end up calling `bw gibberish`.
+**Any** command supported by the Bitwarden CLI is suppoerted by `bw-helper`, as the command arguments are passed directly to Bitwarden CLI if it's an unknown command for `bw-helper`. As an example, calling `bw-helper gibberish` will end up calling `bw gibberish`.

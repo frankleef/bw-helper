@@ -10,7 +10,7 @@ import (
 
 func ValidateInit() error {
 	if _, err := os.Stat(fmt.Sprintf("%s/%s", config.Configuration.HomeDir, config.Configuration.ConfigDir)); err != nil {
-		return errors.New("Directory $HOME/.bw-helper does not exist. Run bw-login init first.")
+		return errors.New("Directory $HOME/.bw-helper does not exist. Run bw-helper init first.")
 	}
 
 	return nil
