@@ -31,6 +31,18 @@ func (c *Config) InitConfig() error {
 
 	Configuration = Config{HomeDir: home, Scheme: "http", Host: "localhost", Port: 8087, ConfigDir: ".bw-helper"}
 
+	if !c.ConfigExists() {
+		return nil
+	}
+
+	if err := viper.ReadInConfig(); err != nil {
+		return err
+	}
+
+	if err := viper.Unmarshal(&c); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -80,4 +92,12 @@ func (c *Config) UpdatePassword(password string) error {
 	}
 
 	return nil
+}
+
+func (c *Config) ConfigExists() bool {
+	if _, err := os.Stat(fmt.Sprintf("%s/%s", c.HomeDir, c.ConfigDir)); err != nil {
+		return false
+	}
+
+	return true
 }

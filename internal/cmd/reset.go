@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/frankleef/bw-helper/internal/config"
-	"github.com/spf13/viper"
+	"github.com/frankleef/bw-helper/internal/validator"
 	"github.com/urfave/cli/v3"
 )
 
@@ -26,14 +26,7 @@ var (
 )
 
 func executeReset(c *cli.Command) error {
-	err := viper.ReadInConfig()
-	if err != nil {
-		errorLogger.Fatal(err)
-	}
-
-	err = viper.Unmarshal(&config.Configuration)
-
-	if err != nil {
+	if err := validator.ValidateInit(); err != nil {
 		errorLogger.Fatal(err)
 	}
 

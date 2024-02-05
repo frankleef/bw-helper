@@ -3,10 +3,8 @@ package cmd
 import (
 	"context"
 
-	"github.com/frankleef/bw-helper/internal/config"
 	"github.com/frankleef/bw-helper/internal/session"
 	"github.com/frankleef/bw-helper/internal/validator"
-	"github.com/spf13/viper"
 	"github.com/urfave/cli/v3"
 )
 
@@ -23,17 +21,6 @@ var (
 
 func executeLogin(c *cli.Command) error {
 	if err := validator.ValidateInit(); err != nil {
-		errorLogger.Fatal(err)
-	}
-
-	err := viper.ReadInConfig()
-	if err != nil {
-		errorLogger.Fatal(err)
-	}
-
-	err = viper.Unmarshal(&config.Configuration)
-
-	if err != nil {
 		errorLogger.Fatal(err)
 	}
 
