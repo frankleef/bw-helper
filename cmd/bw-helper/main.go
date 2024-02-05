@@ -104,8 +104,30 @@ func main() {
 			&cli.Command{
 				Name:        "reset",
 				Description: "Reset your password",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:     "password",
+						Usage:    "Password to login into Bitwarden",
+						Required: true,
+					},
+				},
 				Action: func(ctx context.Context, c *cli.Command) error {
-					fmt.Println("Reset")
+					err := viper.ReadInConfig()
+					if err != nil {
+						errorLogger.Fatal(err)
+					}
+
+					err = viper.Unmarshal(&config.Configuration)
+
+					if err != nil {
+						errorLogger.Fatal(err)
+					}
+
+					if err := config.Configuration.UpdatePassword(c.String("password")); err != nil {
+						errorLogger.Fatal(err)
+					}
+
+					infoLogger.Println("password updated")
 					return nil
 				},
 			},

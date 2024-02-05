@@ -47,3 +47,21 @@ func (c *Config) InitConfig(scheme string, host string, port int64, password str
 
 	return nil
 }
+
+func (c *Config) UpdatePassword(password string) error {
+	c.Password = password
+
+	data, err := yaml.Marshal(&c)
+
+	if err != nil {
+		return err
+	}
+
+	err = os.WriteFile(fmt.Sprintf("%s/.bw-helper/config.yaml", c.HomeDir), data, 0644)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
