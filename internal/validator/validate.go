@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/frankleef/bw-helpers/internal/config"
+	"github.com/frankleef/bw-helper/internal/config"
 )
 
 func ValidateInit() error {

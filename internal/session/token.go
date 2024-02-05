@@ -7,8 +7,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/frankleef/bw-helpers/internal/config"
-	"github.com/frankleef/bw-helpers/internal/vault"
+	"github.com/frankleef/bw-helper/internal/config"
+	"github.com/frankleef/bw-helper/internal/vault"
 )
 
 func InitializeSession() error {
