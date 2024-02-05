@@ -9,11 +9,10 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-var infoLogger log.Logger
-var errorLogger log.Logger
+var infoLogger = *log.New(os.Stdout, "INFO: ", log.LstdFlags|log.Lshortfile)
+var errorLogger = *log.New(os.Stdout, "ERROR: ", log.LstdFlags|log.Lshortfile)
 
 func Execute() {
-	initLoggers()
 
 	if err := config.Configuration.InitConfig(); err != nil {
 		errorLogger.Fatal(err)
@@ -22,21 +21,16 @@ func Execute() {
 	cmd := &cli.Command{
 		EnableShellCompletion: true,
 		Commands: []*cli.Command{
-			addInit(),
-			addLogin(),
-			addReset(),
+			initCmd,
+			loginCmd,
+			resetCmd,
 		},
 		Action: func(ctx context.Context, c *cli.Command) error {
-			return passCommandToBw(c)
+			return defaultCmd(c)
 		},
 	}
 
 	if err := cmd.Run(context.Background(), os.Args); err != nil {
 		log.Fatal(err)
 	}
-}
-
-func initLoggers() {
-	infoLogger = *log.New(os.Stdout, "INFO: ", log.LstdFlags|log.Lshortfile)
-	errorLogger = *log.New(os.Stdout, "ERROR: ", log.LstdFlags|log.Lshortfile)
 }

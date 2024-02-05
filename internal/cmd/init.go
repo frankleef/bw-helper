@@ -9,8 +9,8 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-func addInit() *cli.Command {
-	return &cli.Command{
+var (
+	initCmd = &cli.Command{
 		Name:        "init",
 		Description: "Initialize the helper.",
 		Flags: []cli.Flag{
@@ -36,7 +36,7 @@ func addInit() *cli.Command {
 			return executeInit(c)
 		},
 	}
-}
+)
 
 func executeInit(c *cli.Command) error {
 	infoLogger.Println("trying to create config dir...")

@@ -8,8 +8,8 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-func addReset() *cli.Command {
-	return &cli.Command{
+var (
+	resetCmd = &cli.Command{
 		Name:        "reset",
 		Description: "Reset your password",
 		Flags: []cli.Flag{
@@ -23,7 +23,7 @@ func addReset() *cli.Command {
 			return executeReset(c)
 		},
 	}
-}
+)
 
 func executeReset(c *cli.Command) error {
 	err := viper.ReadInConfig()

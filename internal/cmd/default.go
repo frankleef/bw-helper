@@ -11,7 +11,7 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-func passCommandToBw(c *cli.Command) error {
+func defaultCmd(c *cli.Command) error {
 	if err := validator.ValidateInit(); err != nil {
 		errorLogger.Fatal(err)
 	}

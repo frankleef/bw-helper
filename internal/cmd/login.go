@@ -10,8 +10,8 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-func addLogin() *cli.Command {
-	return &cli.Command{
+var (
+	loginCmd = &cli.Command{
 		Name:        "login",
 		Description: "Login to your Bitwarden Vault",
 		Action: func(ctx context.Context, c *cli.Command) error {
@@ -19,7 +19,7 @@ func addLogin() *cli.Command {
 			return executeLogin(c)
 		},
 	}
-}
+)
 
 func executeLogin(c *cli.Command) error {
 	if err := validator.ValidateInit(); err != nil {
