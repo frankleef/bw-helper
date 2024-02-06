@@ -26,6 +26,8 @@ To install, run:
 
 ## Usage
 
+This CLI assumes you have already set your server and are logged in using the offical Bitwarden CLI.
+
 ### Initialization
 
 This command creates the necessary configuration folders and files, allowing you to unlock your vault and retrieve logins.
