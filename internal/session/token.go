@@ -53,6 +53,14 @@ func SetSession() error {
 	return nil
 }
 
+func RemoveSession() error {
+	if err := os.Remove(fmt.Sprintf("%s/%s/.token", config.Configuration.HomeDir, config.Configuration.ConfigDir)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func writeToken(code string) error {
 	file, err := os.OpenFile(fmt.Sprintf("%s/%s/.token", config.Configuration.HomeDir, config.Configuration.ConfigDir), os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
 

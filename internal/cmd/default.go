@@ -27,7 +27,7 @@ func defaultCmd(c *cli.Command) error {
 
 	err := bwCmd.Run()
 
-	if err != nil {
+	if err != nil && c.Args().First() != "" {
 		errorLogger.Fatal(err)
 	}
 
@@ -40,6 +40,5 @@ func defaultCmd(c *cli.Command) error {
 		return nil
 	}
 
-	infoLogger.Println(outb.String())
 	return nil
 }

@@ -24,6 +24,7 @@ func Execute() {
 			initCmd,
 			loginCmd,
 			resetCmd,
+			lockCmd,
 		},
 		Action: func(ctx context.Context, c *cli.Command) error {
 			return defaultCmd(c)
